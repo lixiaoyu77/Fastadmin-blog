@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title> 留言</title>
+        <link rel="shortcut icon" href="__CDN__/assets/img/favicon.ico" />
+        <!-- Bootstrap Core CSS -->
+        <link href="__CDN__/assets/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="__CDN__/assets/css/main.css" rel="stylesheet">
+        <style>
+            .pagination { 	
+                padding-top: 20px;
+                list-style: none; 
+                margin: 0;
+                   padding-left: 470px;
+            }
+            .pagination li { 
+                display: inline-block; 
+                padding: 10px; }
+            .pagination > li > a{
+                color: black;
+            }
+            .pagination > li > span {
+                color: black;
+            }
+        </style>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://cdn.staticfile.org/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body>
+
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <p class="navbar-brand" >{$site.name|htmlentities}</p>
+            </div>
+            <label class="toggle-label visible-xs-inline-block" for="toggle-checkbox">MENU</label>
+            <input class="hidden" id="toggle-checkbox" type="checkbox">
+            <div class="hidden-xs">
+                <div class="col-sm-offset-2">
+                    <ul class="nav navbar-nav navbar-list">
+                        <li><a href="{:url('/')}">{:__('Home')}</a></li>
+                        <li><a href="#">技术</a></li>
+                        <li><a href="#">酷站</a></li>
+                        <li><a href="#">工具</a></li>
+                        <li><a href="#">图库</a></li>
+                        <li><a href="#">生活</a></li>
+                        <li><a href="{:url('index/message/index')}">留言</a></li>
+                        <li><a href="#">关于博主</a></li>
+                    </ul>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li><a href="{:url('index/user/index')}">{:__('Member center')}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="jumbotron">
+            <h1 class="display-4">简单的留言板</h1>
+            <p class="lead">一个人静静坐在电脑面前写代码的感觉，那是什么感觉？是武林高手闭关修炼的感觉。</p>
+        </div>
+
+        <form action="{:url('/index/message/')}" method='post'>
+            <div class='row'>
+                <p class="postbottom">◎欢迎参与讨论，请在这里发表您的看法、交流您的观点。</p>
+                <div class='col-12'>
+                    <div class="form-group">
+                        <textarea name='content' class="form-control" rows='4' placeholder="请输入留言内容："></textarea>
+                    </div>
+                </div>
+                
+                <div class='col-3'>
+                    <div class="form-group">
+                        <input name='username' class='form-control' type='text' placeholder="用户名："  />
+                    </div>
+                </div>
+                
+                <div class='col-9 d-flex pull-right'>
+                    <div class="form-group ml-auto">
+                        <input class='btn btn-primary' type='submit' value='发表留言' />
+                    </div>
+                </div>
+                
+            </div>
+        </form>
+
+        <div class='row'>
+            <div class='col-12'>
+                {volist name='list' id='user'}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            用户：{$user.username}
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        留言：{$user.content}
+                        <p class="pull-right">发布于：{$user.createtime|date='Y-m-d',###}</p>
+                    </div>
+                </div>
+                {/volist} 
+            </div>  
+            {$list->render()} 
+        </div>
+        
+    </div>
+
+    <div class="modal-footer">
+        <address class="text-center">
+            <p>关于博客园 | 联系我们 | 广告服务 </p>
+            <p>Copyright @ 2017~{:date('Y',time())} 版权所有 </p>             
+        </address>
+    </div>
+
+    
+</body>
+
+</html> 

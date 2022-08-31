@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="__CDN__/assets/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__CDN__/assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+
+
+        <div class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <p class="navbar-brand" >{$site.name|htmlentities}</p>
+                </div>
+                <label class="toggle-label visible-xs-inline-block" for="toggle-checkbox">MENU</label>
+                <input class="hidden" id="toggle-checkbox" type="checkbox">
+                <div class="hidden-xs">
+                    <div class="col-sm-offset-2">
+                        <ul class="nav navbar-nav navbar-list">
+                            <li><a href="{:url('/')}">{:__('Home')}</a></li>
+                            <li><a href="#">技术</a></li>
+                            <li><a href="#">酷站</a></li>
+                            <li><a href="#">工具</a></li>
+                            <li><a href="#">图库</a></li>
+                            <li><a href="#">生活</a></li>
+                            <li><a href="{:url('index/message/index')}">留言</a></li>
+                            <li><a href="#">关于博主</a></li>
+                        </ul>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        
+                        <li><a href="{:url('index/user/index')}">{:__('Member center')}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="col-sm-8">
+            <h1 class="blog-title">{$obj.tittle}</h1>
+            <div class="blog-info">
+                <span class="avatar"><img src="__CDN__/assets/img/v2-2d45613b0fb8cdd36f53c3b31d0c6ee8_hd.jpg" alt="avatar"></span>
+                <span>{$obj.name.username}</span> |
+                <span>2.8K热度</span> |
+                <span>{$obj.createtime|date='Y-m-d',###}</span>
+                <label class="label label-warning">博客</label>
+                <label class="label label-info">编程</label>
+                <label class="label label-success">PHP</label>
+            </div>
+            <div class="blog-content">
+                <blockquote>
+                    <p>博客生活，记录点滴</p>
+                </blockquote>
+                <img src="{$obj.image}">
+               {$obj.content}
+            </div>
+            </div>
+            <div class="col-sm-4 hidden-xs">
+
+            <div class="side-bar-card clearfix">
+                <div class="col-sm-5">
+                    <img src="__CDN__/assets/img/adver.png">
+                </div>
+                <div class="col-sm-7 side-bar-introduction">
+                    <div class="">代码改变世界</div>
+                    <div class="side-bar-phone">联系电话：XXXX</div>
+                </div>
+            </div>
+            <div class="side-bar-card side-bar-recommend clearfix">
+                <div class="side-bar-title">推荐阅读</div>
+                <div class="side-bar-body">
+                    <div class="side-bar-list">
+                        {volist name='goo' id='re'}
+                        <div class="side-bar-item">
+                            <a href="{:url('/index/artical/index',['id'=>$re.Id])}" class="side-item-title">{$re.tittle}</a>
+                            <div class="side-item-info">{$re.likes}k阅读 |{$re.createtime|date='Y-m-d',###}</div>
+                        </div>     
+                        {/volist}
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+        <address class="text-center">
+            <p>关于博客园 | 联系我们 | 广告服务 </p>
+            <p>Copyright @ 2017~{:date('Y',time())} 版权所有 </p>             
+        </address>
+        </div>
+
+</body>
+</html>
